@@ -1,20 +1,58 @@
 <script setup>
-import { onMounted } from "vue";
+// import { onMounted } from "vue";
 
-onMounted(() => {
-  const script = document.createElement("script");
+// onMounted(() => {
+//   const script = document.createElement("script");
 
-  script.src = "https://buttons.github.io/buttons.js";
-  script.async = true;
+//   script.src = "https://buttons.github.io/buttons.js";
+//   script.async = true;
 
-  document.body.appendChild(script);
-});
+// document.body.appendChild(script);
+// });
+import navDrawer from "./components/navDrawer.vue";
+import { ref } from "vue";
+
+const theme = ref("light");
+
+const themeOnClick = () => {
+  theme.value = theme.value === "light" ? "dark" : "light";
+};
+
+const appDrawerOnClick = () => {};
 </script>
 
 <template>
-  <div class="h-screen bg-gray-800 text-white">
-    <header class="py-16"></header>
+  <v-app class="h-screen text-white" :theme="theme">
+    <v-app-bar title="" :elevation="3">
+      <v-app-bar-nav-icon @click="appDrawerOnClick" />
+      <v-spacer></v-spacer>
+      <template v-slot:append>
+        <v-btn icon="mdi-heart"></v-btn>
 
-    <div class="flex items-center justify-center gap-16">body for now</div>
-  </div>
+        <v-btn icon="mdi-magnify"></v-btn>
+
+        <v-btn icon="mdi-dots-vertical"></v-btn>
+        <v-btn
+          :prepend-icon="
+            theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
+          "
+          @click="themeOnClick"
+          >{{ theme }}</v-btn
+        >
+      </template>
+    </v-app-bar>
+
+    <!-- <v-navigation-drawer>
+      <div>
+        <header class="py-16"></header>
+
+        <div class="flex items-center justify-center gap-16">
+          Items goes here
+        </div>
+      </div>
+    </v-navigation-drawer> -->
+
+    <v-main class="flex items-center justify-center gap-16"></v-main>
+    <navDrawer class="flex items-center justify-center gap-16" />
+  </v-app>
 </template>
