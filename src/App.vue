@@ -18,7 +18,9 @@ const themeOnClick = () => {
   theme.value = theme.value === "light" ? "dark" : "light";
 };
 
-const appDrawerOnClick = () => {};
+const appDrawerOnClick = () => {
+  let drawer;
+};
 </script>
 
 <template>
@@ -53,6 +55,9 @@ const appDrawerOnClick = () => {};
     </v-navigation-drawer> -->
 
     <v-main class="flex items-center justify-center gap-16"></v-main>
-    <navDrawer class="flex items-center justify-center gap-16" />
+    <navDrawer
+      class="flex items-center justify-center gap-16"
+      v-model="drawer"
+    />
   </v-app>
 </template>

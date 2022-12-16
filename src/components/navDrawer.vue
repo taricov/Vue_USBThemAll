@@ -44,6 +44,12 @@
       <v-main class="h-screen"></v-main>
     </v-layout>
   </v-card>
+
+  <!-- <template v-slot:append>
+          <div class="pa-2">
+            <v-btn block> Logout </v-btn>
+          </div>
+        </template> -->
 </template>
 <script>
 export default {
